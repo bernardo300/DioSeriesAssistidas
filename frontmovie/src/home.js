@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 //Import link to routing to other components
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-//bootstrap
+
+import Swal from 'sweetalert2';
+
 //Bootstrap libraries
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -40,6 +42,39 @@ class Home extends React.Component {
           }
           );
         }
+        deleteuser(userid)
+      {
+        const fd = new FormData();
+          fd.append('deleteid', userid);
+          
+          
+          axios({
+            url:'http://localhost:5000/movies',
+            method: 'delete',
+            data: {
+              id: userid
+            }
+          }).then(res=>
+          {
+    
+            
+            //Get all users details in bootstrap table
+            axios.get('http://localhost:5000/movies').then(res => 
+            {
+            //Storing users detail in state array object
+            this.setState({data: res.data});
+            }); 
+            //Success Message in Sweetalert modal
+            Swal.fire({
+              title: 'User id of '+userid+' has been deleted.',
+              text: res.data.data,
+              type: 'success',
+              
+            });
+          
+          }
+          );
+      }
       componentDidMount(){
         axios.get('http://localhost:5000/movies').then(res => 
         {
@@ -84,7 +119,7 @@ class Home extends React.Component {
                   <td>
                     <button className="bg-info" onClick={e => {this.userdetails(result.id)}}> <i class="fas fa-eye"></i> </button>
                     <button className="bg-warning"> <i class="fas fa-edit"></i> </button>
-                    <button className="bg-danger"> <i class="fas fa-trash"></i> </button>
+                    <button className="bg-danger"> <i class="fas fa-trash" onClick={e => {this.deleteuser(result.id)}}></i> </button>
                   </td>
                 </tr>
              
