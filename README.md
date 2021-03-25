@@ -8,7 +8,15 @@
 - Backend na porta 5000
 - Frontend na porta 3000
 
+## bibliotecas
+
+- [sweetalert2](https://sweetalert2.github.io/)
+
 ## Prints
+
+Tela inicial:
+
+![](prints/home.png)
 
 Mensagem de erro:
 
@@ -17,7 +25,3 @@ Mensagem de erro:
 Mensagem de Sucesso:
 
 ![](prints/success.png)
-
-Tela inicial:
-
-![](prints/home.png)
