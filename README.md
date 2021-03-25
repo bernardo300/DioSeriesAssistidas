@@ -11,10 +11,10 @@
 ## Prints
 
 Mensagem de erro:
-![](/print/error.png)
+![](prints/error.png)
 
 Mensagem de Sucesso:
-![](/print/success.png)
+![](prints/success.png)
 
 Tela inicial:
-![](/print/home.png)
+![](prints/home.png)
