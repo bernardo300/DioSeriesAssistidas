@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //axios for api request
 import axios from 'axios';
-class AddUser extends React.Component {
+class UpdateUser extends React.Component {
   constructor(props)
     {
       super(props);
@@ -15,7 +15,9 @@ class AddUser extends React.Component {
   addFormData(evt)
     {
       evt.preventDefault();
- 
+      const fd = new FormData();
+
+      
       axios({
       method: 'post',
       url: 'http://localhost:5000/movies', 
@@ -48,23 +50,23 @@ class AddUser extends React.Component {
         
         <form ref={(el) => this.myFormRef = el}>
         <div className="form-group">
-        <input type="email" className="form-control" id="tipo" aria-describedby="emailHelp" placeholder="Enter type" ref="tipo" />
+        <input type="email" className="form-control" id="tipo" aria-describedby="emailHelp" placeholder="Enter email" ref="tipo" />
         
         </div>
         <div className="form-group">
-        <input type="text" className="form-control" id="nome" placeholder="Enter nome" ref="nome" />
+        <input type="text" className="form-control" id="nome" placeholder="Enter Username" ref="nome" />
         </div>
         
         <div className="form-group">
-        <input type="text" className="form-control" id="total_ep" placeholder="Enter T Episodios" ref="total_ep" />
+        <input type="text" className="form-control" id="total_ep" placeholder="Enter Username" ref="total_ep" />
         </div>
         
         <div className="form-group">
-        <input type="text" className="form-control" id="atual_ep" placeholder="Enter Atual epsiodio" ref="atual_ep" />
+        <input type="text" className="form-control" id="atual_ep" placeholder="Enter Username" ref="atual_ep" />
         </div>
       
         <div className="form-group">
-        <input type="date" className="form-control" id="last_view" placeholder="Enter last view" ref="last_view" />
+        <input type="date" className="form-control" id="last_view" placeholder="Enter Username" ref="last_view" />
         </div>
         <button type="submit" className="btn btn-primary" onClick={this.addFormData}>Submit</button>
 
@@ -78,4 +80,4 @@ class AddUser extends React.Component {
 )
 };
 }
-export default AddUser;
+export default UpdateUser;

@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 //All components
 import AddUser from './adduser';
+import UpdateUser from './updateuser';
 import Home from './home';
 import Header from './header';
 //bootstrap
@@ -21,15 +22,13 @@ class App extends React.Component {
         <Header></Header>
         
         <Switch>
-            
-            
+                     
             <Route exact path='/adduser' component={AddUser} />
+            <Route exact path='/updateuser' component={UpdateUser} />
             <Route exact path='/home' component={Home} />
             <Route exact path='' component={Home} />
-           
-          </Switch>
-            
-      
+        
+          </Switch> 
       
       </div>
       </Router>
