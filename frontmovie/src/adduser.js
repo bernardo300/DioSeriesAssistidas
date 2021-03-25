@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Redirect } from 'react-router';
+import Swal from 'sweetalert2';
 //bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 //axios for api request
@@ -31,7 +32,14 @@ class AddUser extends React.Component {
       
     this.myFormRef.reset();
     //Redirect to home page after successfully submission
-    this.props.history.push('')
+    this.props.history.push('');
+    Swal.fire({
+      title: 'Filme salvo comsucess.',
+      text: res.data.data,
+      type: 'success',
+      
+    });
+
     }
     );
     }
