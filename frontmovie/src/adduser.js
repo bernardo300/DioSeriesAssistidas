@@ -21,11 +21,11 @@ class AddUser extends React.Component {
       method: 'post',
       url: 'http://localhost:5000/movies', 
       data: {
-        nome: this.refs.nome.value,
-        tipo: this.refs.tipo.value,
-        total_ep: this.refs.total_ep.value,
-        atual_ep: this.refs.atual_ep.value,
-        last_view: this.refs.last_view.value,
+        nome: document.getElementById('nome').value,
+        tipo: document.getElementById('tipo').value,
+        total_ep: document.getElementById('total_ep').value,
+        atual_ep: document.getElementById('atual_ep').value,
+        last_view: document.getElementById('last_view').value,
       },
     }).then(res=>
       {
@@ -34,14 +34,19 @@ class AddUser extends React.Component {
     //Redirect to home page after successfully submission
     this.props.history.push('');
     Swal.fire({
-      title: 'Filme salvo comsucess.',
+      title: 'Filme salvo com  sucesso.',
       text: res.data.data,
       type: 'success',
       
     });
 
     }
-    );
+    ).catch(err => {
+      Swal.fire({
+        title: 'Tente mais tarde.',
+        type: 'error',    
+        });
+    });
     }
   
  
@@ -51,7 +56,7 @@ class AddUser extends React.Component {
     
       <div className="maincontainer">
         
-        <h1 className="mr-5 ml-5 mt-5">Add User</h1>
+        <h1 className="mr-5 ml-5 mt-5">Adicionar Filme</h1>
         <div className="container mb-5 mt-5 text-left">
         
         <form ref={(el) => this.myFormRef = el}>

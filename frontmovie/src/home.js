@@ -50,14 +50,17 @@ class Home extends React.Component {
             }); 
             //Success Message in Sweetalert modal
             Swal.fire({
-              title: 'User id of '+this.refs.upid.value+' has been updated.',
+              title: 'Filme id '+this.refs.upid.value+' foi atualizado.',
               text: res.data.data,
-              type: 'success',
-              
-            });
-            
+              type: 'success',    
+              });           
             }
-            );
+          ).catch((error) => {
+            Swal.fire({
+              title: 'Tente mais tarde',
+              type: 'error',    
+              });
+          });
       }
       //Get user details inside bootstrap modal popup
       userdetails(userid){
@@ -101,14 +104,19 @@ class Home extends React.Component {
             }); 
             //Success Message in Sweetalert modal
             Swal.fire({
-              title: 'User id of '+userid+' has been deleted.',
+              title: 'Filme id '+userid+' deletado.',
               text: res.data.data,
               type: 'success',
               
             });
           
           }
-          );
+          ).catch(err => {
+            Swal.fire({
+              title: 'Tente mais tarde.',
+              type: 'error',    
+              });
+          });
       }
       //Edit User Function
       edituser(userid){       
@@ -147,32 +155,31 @@ class Home extends React.Component {
      
       <div className="maincontainer">
         
-        <h1 className="mr-5 ml-5 mt-5">Reactjs simple crud tutorial for beginners</h1>
-        <div className="container mb-5 mt-5 text-left">
-        <button className="bg-primary mb-3"><Link class="nav-link" to={'/adduser'}><span>Add</span><i class="fas fa-film-canister"></i></Link></button>
+        <h1 className="mr-2 ml-2 mt-2 text-center">Seu controle de séries e filmes</h1>
+        <div className="container mb-2 mt-2 text-right">
+        <button className="btn btn-primary mb-3"><Link class="nav-link" to={'/adduser'}><span>Adicionar Novo Filme</span><i class="fas fa-film-canister"></i></Link></button>
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
               <th>Tipo</th>
-              <th>Nome</th>
-              <th>Total Episodios</th>
-              <th>Episodio Atual</th>
-              <th>Ultima Visualização</th>
-              <th>Açoes</th>             
+              <th className="text-center">Nome</th>
+              <th className="text-center">Episodios</th>
+              <th className="text-center">Episodio Atual</th>
+              <th className="text-center">Visto por ultimo</th>
+              <th className="text-center">Açoes</th>             
             </tr>
           </thead>
           <tbody>
           {this.state.data.map((result) => {
             let tipo = result.tipo === 0 ? 'Série' : 'Filme';
             let data = (result.last_view).split('T', 1)
-            return (
-             
+            return (           
                  <tr>
-                  <td>{tipo}</td>
-                  <td>{result.nome}</td>
-                  <td>{result.total_ep}</td>
-                  <td>{result.atual_ep}</td>
-                  <td>{data}</td>
+                  <td className="text-center">{tipo}</td>
+                  <td className="text-left">{result.nome}</td>
+                  <td className="text-center">{result.total_ep}</td>
+                  <td className="text-center">{result.atual_ep}</td>
+                  <td className="text-center">{data}</td>
                   <td>
                     <button className="bg-info" onClick={e => {this.userdetails(result.id)}}> <i class="fas fa-eye"></i> </button>
                     <button className="bg-warning"> <i class="fas fa-edit" onClick={e => {this.edituser(result.id)}}></i> </button>
@@ -190,7 +197,7 @@ class Home extends React.Component {
             <div class="modal-dialog">
               <div class="modal-content">           
                 <div class="modal-header">
-                  <h4 class="modal-title align-center">User : {this.state.userdetails.id}</h4>
+                  <h4 class="modal-title align-center">Filme : {this.state.userdetails.id}</h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
@@ -198,16 +205,17 @@ class Home extends React.Component {
                 <table class="table table-hover table-bordered">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Email</th>
-                  <th>Username</th>          
+                  <th>Tipo</th>
+                  <th>Nome</th>
+                  <th>Ultima visualização</th>          
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                <td>{this.state.userdetails.nome}</td>
-                <td>{this.state.userdetails.tipo}</td>
-                </tr> 
+                <tbody>
+                  <tr>
+                  <td>{this.state.userdetails.tipo}</td>
+                  <td>{this.state.userdetails.nome}</td>
+                  <td>{this.state.userdetails.last_view}</td>
+                  </tr> 
                 </tbody>
               </table>
         </div>   
@@ -218,13 +226,12 @@ class Home extends React.Component {
       </div>
       </div>
 
-
       <div class="modal" id="editmodal">
             <div class="modal-dialog">
               <div class="modal-content">
               
                 <div class="modal-header">
-                  <h4 class="modal-title align-center">User : {this.state.userdetails.nome}</h4>
+                  <h4 class="modal-title align-center">Filme : {this.state.userdetails.nome}</h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
